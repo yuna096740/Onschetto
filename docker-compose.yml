@@ -1,0 +1,49 @@
+version: '3'
+services:
+  onschetto-nginx:
+    container_name: "onschetto-nginx"
+    build: 
+      context: ./docker/nginx
+    depends_on:
+      - onschetto-app
+    ports:
+      - 80:80
+    volumes:
+      - ./:/src 
+
+  onschetto-app:
+    container_name: "onschetto-app"
+    build: 
+      context: ./docker/php
+    depends_on:
+      - onschetto-mysql
+    # Docker外にいるブラウザから、appサーバー内にいるViteが見えるようにする
+    # (/docker/php/Dockerfileにも記述)
+    ports:
+      - 5173:5173
+    volumes:
+      - ./:/src
+      # 除外することで動作の高速化を図れる(node_modules, vendor)
+      - /src/node_modules
+      - /src/vendor
+      - ./docker/php/php.ini:/usr/local/etc/php/php.ini
+
+  onschetto-mysql:
+    image: mysql:8.0.33
+    # パケットサイズ最大値設定
+    command: --max_allowed_packet=32505856
+    container_name: "onschetto-mysql"
+    volumes:
+      - ./docker/mysql:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=l10dev
+    # 開発中にHeidiSQLやSequel Aceを使ってDBの中身を見るために必要
+    ports:
+      - 3306:3306
+    
+  onschetto-redis:
+    image: redis:alpine
+    container_name: "onschetto-redis"
+    ports:
+      - 16379:6379
