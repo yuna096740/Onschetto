@@ -33,3 +33,6 @@ RUN npm --version
 WORKDIR /src
 ADD . /src/storage
 RUN chown -R www-data:www-data /src/storage
+# 自動実行用(動作高速化を図り/src/node_modulesフォルダ,/src/vendorフォルダはボリュームマウントから外している為)
+# ('--build'オプション) 'docker compose up -d --build', 'docker compose exec onschetto-app bash' で自動実行
+ENTRYPOINT [ "bash", "-c", "composer install; npm install; exec php-fpm" ]
