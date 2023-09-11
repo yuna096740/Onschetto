@@ -36,8 +36,8 @@ services:
     volumes:
       - ./docker/mysql:/var/lib/mysql
     environment:
-      - MYSQL_ROOT_PASSWORD=root
-      - MYSQL_DATABASE=l10dev
+      - MYSQL_ROOT_PASSWORD=pass
+      - MYSQL_DATABASE=onschetto
     # 開発中にHeidiSQLやSequel Aceを使ってDBの中身を見るために必要
     ports:
       - 3306:3306
@@ -47,3 +47,15 @@ services:
     container_name: "onschetto-redis"
     ports:
       - 16379:6379
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    depends_on:
+      - onschetto-mysql
+    environment:
+      - PMA_ARBITRARY=1
+      - PMA_HOSTS='onschetto-mysql'
+    ports:
+      - "3000:80"
+    volumes:
+      - ./docker/phpmyadmin/sessions:/sessions
