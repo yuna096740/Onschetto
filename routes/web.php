@@ -27,8 +27,21 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    // Route::get('/dashbord', function() {
+    //     return view('dashboard');
+    // })->name('dashboard');
+
+    // // 設定関連のページのルーティング
+    // Route::name('setting.')->prefix('/setting')->group(function () {
+    //     Route::get('/', [SettingsComtroller::class, 'index']->name('index'));
+    //     Route::put('/', [SettingsComtroller::class, 'update']->name('update'));
+    // });
 });
 
-Route::resource('posts', PostController::class);
+Route::resource('posts', PostController::class)->only(['index']);
+
+Route::post('/schedule-add', [PostController::class, 'scheduleAdd'])->name('schedule-add');
+Route::post('/schedule-get', [PostController::class, 'scheduleGet'])->name('schedule-get');
 
 require __DIR__.'/auth.php';
