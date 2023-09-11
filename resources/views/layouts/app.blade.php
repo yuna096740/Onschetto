@@ -6,15 +6,15 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <title>{{ config('app.name', 'Laravel') }}</title>
-        <title>@yield('title')</title>
 
+        <title>@yield('title')</title>
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
-        
+
         <!-- fullcalender -->
         <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
         <script>
@@ -46,6 +46,9 @@
             <main>
                 {{-- {{ $slot }} --}}
                 @yield('content')
+
+                {{-- Page Footer --}}
+                @include('layouts.footer')
             </main>
         </div>
     </body>
