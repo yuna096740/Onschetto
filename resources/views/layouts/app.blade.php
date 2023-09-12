@@ -17,17 +17,6 @@
 
         <!-- fullcalender -->
         <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
-        <script>
-
-            document.addEventListener('DOMContentLoaded', function() {
-              var calendarEl = document.getElementById('calendar');
-              var calendar = new FullCalendar.Calendar(calendarEl, {
-                initialView: 'dayGridMonth'
-              });
-              calendar.render();
-            });
-      
-        </script>
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100">
@@ -44,8 +33,11 @@
 
             <!-- Page Content -->
             <main>
-                {{-- {{ $slot }} --}}
                 @yield('content')
+
+                @if(isset($slot))
+                    {{ $slot }}
+                @endif
 
                 {{-- Page Footer --}}
                 @include('layouts.footer')

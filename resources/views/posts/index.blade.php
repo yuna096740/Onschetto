@@ -2,5 +2,5 @@
 @section('title', 'スケジュール')
 
 @section('content')
-  <div id="calendar" class="md:h-full"></div>
+  <div id="calendar"></div>
 @endsection
