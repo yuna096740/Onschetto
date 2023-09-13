@@ -36,7 +36,7 @@ services:
     volumes:
       - ./docker/mysql:/var/lib/mysql
     environment:
-      - MYSQL_ROOT_PASSWORD=pass
+      - MYSQL_ROOT_PASSWORD=root
       - MYSQL_DATABASE=onschetto
     # 開発中にHeidiSQLやSequel Aceを使ってDBの中身を見るために必要
     ports:
