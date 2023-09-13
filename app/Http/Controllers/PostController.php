@@ -20,24 +20,35 @@ class PostController extends Controller
      */
     public function scheduleAdd(Request $request)
     {
+
+        // 保存処理
         // validation
         $request->validate([
-            'start_date' => 'required|integer',
-            'end_date'   => 'required|integer',
-            'event_name' => 'required|max:32',
+            'startDate'     => 'required|date',
+            'endDate'       => 'required|date',
+            'eventName'     => 'required|max:32',
+            'detail'        => 'required|max:80',
+            'scheduleColor' => 'required|string',
         ]);
+
+        $startDate = \Carbon\Carbon::parse($request->input('startDate'))->timestamp;
+        $endDate = \Carbon\Carbon::parse($request->input('endDate'))->timestamp;
 
         // 登録処理
         $userId = Auth::id();
         $post = new Post;
         // 日付に変換。JavaScriptのタイムスタンプはミリ秒なので秒に変換
         $post->user_id = $userId;
-        $post->start_date = date('Y-m-d', $request->input('start_date') / 1000);
-        $post->end_date =   date('Y-m-d', $request->input('end_date') / 1000);
-        $post->event_name = $request->input('event_name');
+        $post->startDate = date('Y-m-d', $startDate);
+        $post->endDate = date('Y-m-d', $endDate);
+        $post->eventName = $request->input('eventName');
+        $post->detail = $request->input('detail');
+        $post->scheduleColor = $request->input('scheduleColor');
+        
         $post->save();
 
-        return;
+        return view("/posts/index");
+  
     }
 
     /**
@@ -49,25 +60,25 @@ class PostController extends Controller
     {
         // validation
         $request->validate([
-            'start_date' => 'required|integer',
-            'end_date' => 'required|integer'
+            'startDate' => 'required|integer',
+            'endDate' => 'required|integer'
         ]);
 
         // カレンダー表示期間
-        $start_date = date('Y-m-d', $request->input('start_date') / 1000);
-        $end_date = date('Y-m-d', $request->input('end_date') / 1000);
+        $startDate = date('Y-m-d', $request->input('startDate') / 1000);
+        $endDate = date('Y-m-d', $request->input('endDate') / 1000);
 
         // 登録処理
         return Post::query()
             ->select(
                 // FullCalendarの形式に合わせる
-                'start_date as start',
-                'end_date as end',
-                'event_name as title'
+                'startDate as start',
+                'endDate as end',
+                'eventName as title'
             )
             // FullCalendarの表示範囲のみ表示
-            ->where('end_date', '>', $start_date)
-            ->where('start_date', '<', $end_date)
+            ->where('endDate', '>', $startDate)
+            ->where('startDate', '<', $endDate)
             ->get();
     }
 }
