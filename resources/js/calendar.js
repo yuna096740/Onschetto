@@ -36,10 +36,10 @@ document.addEventListener('DOMContentLoaded', function() {
           const detail = document.getElementById('detail');
           const scheduleColor = document.getElementById('scheduleColor');
           const submitSchedule = document.getElementById('submitSchedule');
-          console.log(eventName)
+          submitSchedule.addEventListener('click', buttonClick);
 
-          if (submitSchedule) {
-            console.log();
+          function buttonClick() {
+            console.log(eventName);
             // Laravelの登録処理の呼び出し
               const data = {
                 startDate: info.start.valueOf(),
@@ -57,7 +57,6 @@ document.addEventListener('DOMContentLoaded', function() {
                           title: eventName,
                           start: info.start,
                           end: info.end,
-                          allDay: true,
                       });
                   })
                   .catch(() => {
