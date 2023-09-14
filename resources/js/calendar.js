@@ -92,14 +92,3 @@ document.addEventListener('DOMContentLoaded', function() {
     console.error("calendarEl が存在しません。");
   }
 });
-
-
-
- //          
-          
-          // document.getElementById("startDate").value = info.start;
-          // document.getElementById("endDate").value = info.end;
-          // document.getElementById("eventName").value = eventName;
-          // document.getElementById("detail").value = detail;
-          // document.getElementById("scheduleColor").value = scheduleColor;
-          

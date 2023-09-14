@@ -25,6 +25,7 @@
 
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <!-- 開くボタン -->
+                    @yield('createScheduleModal')
                     <button data-micromodal-trigger="modal-1">Create Schedule</button>
                 </div>
             </div>

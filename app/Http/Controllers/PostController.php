@@ -74,7 +74,8 @@ class PostController extends Controller
                 // FullCalendarの形式に合わせる
                 'startDate as start',
                 'endDate as end',
-                'eventName as title'
+                'eventName as title',
+                'scheduleColor as color'
             )
             // FullCalendarの表示範囲のみ表示
             ->where('endDate', '>', $startDate)
