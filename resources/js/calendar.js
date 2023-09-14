@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // 日付をクリック、または範囲を選択したイベント
         selectable: true,
         dateClick: function (info) {
-          MicroModal.show('modal-1');
+          MicroModal.show('newScheduleModal');
           const event = info.event;
         
           // const startDate = document.getElementById('startDate');

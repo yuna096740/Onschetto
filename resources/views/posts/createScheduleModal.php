@@ -1,4 +1,4 @@
-
+<!-- @include('createScheduleModal') -->
 
 <body>
   <div class="modal micromodal-slide" id="modal-2" aria-hidden="true">

@@ -31,13 +31,14 @@ class PostController extends Controller
             'scheduleColor' => 'required|string',
         ]);
 
+        // 日付をUnixタイムスタンプに変換
         $startDate = \Carbon\Carbon::parse($request->input('startDate'))->timestamp;
         $endDate = \Carbon\Carbon::parse($request->input('endDate'))->timestamp;
 
         // 登録処理
         $userId = Auth::id();
         $post = new Post;
-        // 日付に変換。JavaScriptのタイムスタンプはミリ秒なので秒に変換
+
         $post->user_id = $userId;
         $post->startDate = date('Y-m-d', $startDate);
         $post->endDate = date('Y-m-d', $endDate);
@@ -82,4 +83,15 @@ class PostController extends Controller
             ->where('startDate', '<', $endDate)
             ->get();
     }
+
 }
+    // public function editEvent(Request $request) 
+    // {
+    //     $request->validate([
+    //         'startDate'     => 'required|date',
+    //         'endDate'       => 'required|date',
+    //         'eventName'     => 'required|max:32',
+    //         'detail'        => 'required|max:80',
+    //         'scheduleColor' => 'required|string'
+    //     ])
+    // }
