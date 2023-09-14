@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // 日付をクリック、または範囲を選択したイベント
         selectable: true,
         dateClick: function (info) {
-          MicroModal.show('modal-1');
+          MicroModal.show('newScheduleModal');
           const event = info.event;
         
           // const startDate = document.getElementById('startDate');
@@ -92,14 +92,3 @@ document.addEventListener('DOMContentLoaded', function() {
     console.error("calendarEl が存在しません。");
   }
 });
-
-
-
- //          
-          
-          // document.getElementById("startDate").value = info.start;
-          // document.getElementById("endDate").value = info.end;
-          // document.getElementById("eventName").value = eventName;
-          // document.getElementById("detail").value = detail;
-          // document.getElementById("scheduleColor").value = scheduleColor;
-          
