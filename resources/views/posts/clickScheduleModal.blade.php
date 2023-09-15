@@ -1,17 +1,15 @@
-<!-- @include('createScheduleModal') -->
-
 <body>
-  <div class="modal micromodal-slide" id="modal-2" aria-hidden="true">
+  <div class="modal micromodal-slide" id="newScheduleModal" aria-hidden="true">
       <div class="modal__overlay" tabindex="-1" data-micromodal-close>
-        <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="modal-1-title">
+        <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="newScheduleModal-title">
           <header class="modal__header">
-            <h2 class="modal__title" id="modal-2-title">
+            <h2 class="modal__title" id="newScheduleModal-title">
               スケジュール作成
             </h2>
             <button class="modal__close" aria-label="Close modal" data-micromodal-close></button>
           </header>
           <form name="createSchedule" method="POST" action='/schedule-add'>
-            <main class="modal__content" id="modal-2-content">
+            <main class="modal__content" id="newScheduleModal-content">
 
               @csrf
 
@@ -52,9 +50,4 @@
         </div>
       </div>
   </div>
-  
-  <script src="https://unpkg.com/micromodal/dist/micromodal.min.js"></script>
-  <script>
-    MicroModal.init();
-  </script>
  </body>

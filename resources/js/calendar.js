@@ -8,42 +8,39 @@ import axios from 'axios';
 
 document.addEventListener('DOMContentLoaded', function() {
   var calendarEl = document.getElementById("calendar");
-  const eventName = document.getElementById("eventName").value;
-  const detail = document.getElementById("detail").value;
-  const scheduleColor = document.getElementById("scheduleColor").value;
 
   if (calendarEl) {
     let calendar = new Calendar(calendarEl, {
       plugins: [interactionPlugin, dayGridPlugin, timeGridPlugin, listPlugin],
       initialView: "dayGridMonth",
+      selectable: true,
       headerToolbar: {
           left: "prev,next today",
           center: "title",
-          right: "dayGridMonth,timeGridWeek,listWeek",
+          right: "dayGridMonth,timeGridWeek,timeGridDay,listMonth",
       },
       // 日本語化
+      // timeZone: 'local',
       locale: "ja",
     
         // 日付をクリック、または範囲を選択したイベント
-        selectable: true,
         dateClick: function (info) {
-          MicroModal.show('newScheduleModal');
-          const event = info.event;
-        
-          // const startDate = document.getElementById('startDate');
-          // const endDate = document.getElementById('endDate');
+          MicroModal.show('createScheduleModal');
+          
+          const startDate = document.getElementById('startDate');
+          const endDate = document.getElementById('endDate');
           const eventName = document.getElementById('eventName');
           const detail = document.getElementById('detail');
           const scheduleColor = document.getElementById('scheduleColor');
+
           const submitSchedule = document.getElementById('submitSchedule');
           submitSchedule.addEventListener('click', buttonClick);
 
           function buttonClick() {
-            console.log(eventName);
             // Laravelの登録処理の呼び出し
               const data = {
-                startDate: info.start.valueOf(),
-                endDate: info.end.valueOf(),
+                startDate: startDate,
+                endDate: endDate,
                 eventName: eventName,
                 detail: detail,
                 scheduleColor: scheduleColor,
@@ -55,8 +52,8 @@ document.addEventListener('DOMContentLoaded', function() {
                       // イベントの追加
                       calendar.addEvent({
                           title: eventName,
-                          start: info.start,
-                          end: info.end,
+                          start: startDate,
+                          end: endDate,
                       });
                   })
                   .catch(() => {
@@ -68,6 +65,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
         events: function (info, successCallback, failureCallback) {
             // Laravelのイベント取得処理の呼び出し
+            console.log("info",info );
             axios
                 .post("/schedule-get", {
                     startDate: info.start.valueOf(),
@@ -86,6 +84,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
     
         },
+
+        // eventClick: function(info) {
+        //   document.getElementById("id").value = info.id;
+        //   document.getElementById("").value = info.
+
+
+        // }
     });
     calendar.render();
   } else {
