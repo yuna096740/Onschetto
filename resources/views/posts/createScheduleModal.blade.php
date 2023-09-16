@@ -4,7 +4,7 @@
         <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="createScheduleModal-title">
           <header class="modal__header">
             <h2 class="modal__title" id="createScheduleModal-title">
-              スケジュール作成
+              スケジュール作成(create)
             </h2>
             <button class="modal__close" aria-label="Close modal" data-micromodal-close></button>
           </header>
