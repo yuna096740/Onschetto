@@ -1,6 +1,5 @@
 <body>
   <div class="modal micromodal-slide" id="editScheduleModal" aria-hidden="true">
-<<<<<<< Updated upstream
       <div class="modal__overlay" tabindex="-1" data-micromodal-close>
         <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="editScheduleModal-title">
           <header class="modal__header">

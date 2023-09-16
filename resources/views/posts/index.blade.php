@@ -1,6 +1,6 @@
 @extends('layouts/app')
 @section('title', 'スケジュール')
-{{-- @include('posts.createScheduleModal') --}}
+@include('posts.createScheduleModal')
 @include('posts.clickScheduleModal')
 @include('posts.editScheduleModal')
 
