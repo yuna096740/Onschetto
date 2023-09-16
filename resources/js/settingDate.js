@@ -1,12 +1,12 @@
 window.onload = function () {
 
-  var today = new Date();
-  today.setDate(today.getDate());
+  // const today = new Date();
+  // today.setDate(today.getDate());
 
-  var yyyy = today.getFullYear();
-  var mm = ("0" + (today.getMonth() + 1)).slice(-2);
-  var dd = ("0" + today.getDate()).slice(-2);
+  // const year = today.getFullYear();
+  // const month = ("0" + (today.getMonth() + 1)).slice(-2);
+  // const day = ("0" + today.getDate()).slice(-2);
 
-  document.getElementById("startDate").value = yyyy + '-' + mm + '-' + dd;
-  document.getElementById("endDate").value = yyyy + '-' + mm + '-' + dd;
+  // document.getElementById("startDate").value = `${year}-${month}-${day}`;
+  // document.getElementById("endDate").value = `${year}-${month}-${day}`;
 }
