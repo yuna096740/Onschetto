@@ -1,6 +1,4 @@
 <?php
-
-
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
@@ -127,5 +125,25 @@ class PostController extends Controller
         } else {
             throw new \Exception('データが見つかりません');
         }
+    }
+
+    /**
+     * イベントを削除
+     * 
+     * @param Request $request
+     */
+    public function scheduleDelete(Request $request) 
+    {
+        $postId = $request->input('id');
+        $post = Post::find($postId);
+
+        if (!$post) {
+            return response()->json(['success' => false, 'message' => '削除対象のデータが見つかりません']);
+        }
+
+        // データが存在する場合は削除処理を続行
+        $post->delete();
+
+        return redirect()->route('posts.index');
     }
 }
