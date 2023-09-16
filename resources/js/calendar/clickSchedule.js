@@ -12,10 +12,9 @@ document.addEventListener('DOMContentLoaded', function() {
   if (calendarEl) {
     let calendar = new Calendar(calendarEl, {
       plugins: [interactionPlugin, dayGridPlugin, timeGridPlugin, listPlugin],
-      initialView: "dayGridMonth",
-      // ポインタをクリックして日付の上にドラッグできる
-      selectable: true,
-      // 日付クリックで日付モード
+      initialView: "dayGridMonth", // ポインタをクリックして日付の上にドラッグできる
+      dayMaxEvents: true, // イベントが多すぎる場合に「詳細」リンクを許可する
+      selectable: true, // 日付クリックで日付モード
       navLinks: true,
       editable: true,
       headerToolbar: {
@@ -30,7 +29,6 @@ document.addEventListener('DOMContentLoaded', function() {
         dateClick: function (info) {
           MicroModal.show('clickScheduleModal');
           
-          const eventId = info.event.id;
           const eventName = document.getElementById('eventName');
           const startDate = document.getElementById('startDate');
           const endDate = document.getElementById('endDate');
@@ -41,27 +39,27 @@ document.addEventListener('DOMContentLoaded', function() {
 
           function buttonClick() {
             // Laravelの登録処理の呼び出し
-              const data = {
-                startDate: startDate,
-                endDate: endDate,
-                eventName: eventName,
-                scheduleColor: scheduleColor,
-              };
+            const data = {
+              startDate: startDate,
+              endDate: endDate,
+              eventName: eventName,
+              scheduleColor: scheduleColor,
+            };
 
-              axios
-                  .post("/schedule-add", data)
-                  .then(() => {
-                      // イベントの追加
-                      calendar.addEvent({
-                          title: eventName,
-                          start: startDate,
-                          end: endDate,
-                      });
-                  })
-                  .catch(() => {
-                      // バリデーションエラーetc
-                      alert("登録に失敗しました");
+            axios
+              .post("/schedule-add", data)
+              .then(() => {
+                  // イベントの追加
+                  calendar.addEvent({
+                      title: eventName,
+                      start: startDate,
+                      end: endDate,
                   });
+              })
+              .catch(() => {
+                  // バリデーションエラーetc
+                  alert("登録に失敗しました");
+              });
             };
         },
     
@@ -88,11 +86,10 @@ document.addEventListener('DOMContentLoaded', function() {
         },
 
         eventClick: function(info) {
-          
           const eventId = info.event.id;
           const editEventName = info.event.title;
           const editScheduleColor = info.event.backgroundColor;
-          console.log(info.event.id);
+
           const editStartDate = info.event.start ? formatDate(info.event.start) : "";
           const editEndDate = info.event.end ? formatDate(info.event.end) : "";
 
@@ -110,6 +107,20 @@ document.addEventListener('DOMContentLoaded', function() {
           document.getElementById("editEndDate").value = editEndDate;
           document.getElementById("editScheduleColor").value = editScheduleColor;
           MicroModal.show('editScheduleModal');
+
+
+          const submitDeleteSchedule = document.getElementById("submitDeleteSchedule");
+          submitDeleteSchedule.addEventListener('click', buttonClick);
+  
+          function buttonClick() {
+            const confirmDelete = confirm("本当に削除しますか？");
+
+            if (confirmDelete) {
+              var form = document.getElementById("deleteSchedule");
+              form.elements['id'].value = eventId;
+              form.submit();
+            }
+          };
         }
     });
     calendar.render();
