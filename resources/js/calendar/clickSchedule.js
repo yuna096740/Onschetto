@@ -27,9 +27,10 @@ document.addEventListener('DOMContentLoaded', function() {
       locale: "ja",
     
         // 日付をクリック、または範囲を選択したイベント
-        dateClick: function () {
+        dateClick: function (info) {
           MicroModal.show('clickScheduleModal');
           
+          const eventId = info.event.id;
           const eventName = document.getElementById('eventName');
           const startDate = document.getElementById('startDate');
           const endDate = document.getElementById('endDate');
@@ -68,6 +69,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // Laravelのイベント取得処理の呼び出し
             axios
                 .post("/schedule-get", {
+                    eventId : info.id,
                     startDate: info.start.valueOf(),
                     endDate: info.end.valueOf(),
                 })
@@ -79,7 +81,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 })
                 .catch((error) => {
                     // バリデーションエラーetc
-                    failureCallback(err);
                     console.error("Error", error);
                     alert("登録に失敗しました");
                 });
@@ -91,7 +92,7 @@ document.addEventListener('DOMContentLoaded', function() {
           const eventId = info.event.id;
           const editEventName = info.event.title;
           const editScheduleColor = info.event.backgroundColor;
-
+          console.log(info.event.id);
           const editStartDate = info.event.start ? formatDate(info.event.start) : "";
           const editEndDate = info.event.end ? formatDate(info.event.end) : "";
 

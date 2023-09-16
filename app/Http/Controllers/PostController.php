@@ -83,6 +83,7 @@ class PostController extends Controller
         return Post::query()
             ->select(
                 // FullCalendarの形式に合わせる
+                'id as id',
                 'startDate as start',
                 'endDate as end',
                 'eventName as title',
@@ -103,6 +104,7 @@ class PostController extends Controller
     {
         // validation
         $request->validate([
+            'id'            => 'required|integer',
             'startDate'     => 'required|date',
             'endDate'       => 'required|date',
             'eventName'     => 'required|max:32',
@@ -110,8 +112,8 @@ class PostController extends Controller
         ]);
 
         // 編集処理
-        $userId = Auth::id();
-        $post = Post::find($userId);
+        $eventId = $request->input('id');
+        $post = Post::find($eventId);
 
         if ($post) {
             // データが存在する場合の処理

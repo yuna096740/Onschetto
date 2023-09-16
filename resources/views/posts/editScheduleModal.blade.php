@@ -8,7 +8,7 @@
             </h2>
             <button class="modal__close" aria-label="Close modal" data-micromodal-close></button>
           </header>
-          <form name="editSchedule" method="POST" action='/schedule-edit'>
+          <form name="editSchedule" method="POST" action="{{ route('schedule-edit') }}">
             <main class="modal__content" id="editScheduleModal-content">
 
               @csrf
