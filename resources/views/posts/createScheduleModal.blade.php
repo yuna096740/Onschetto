@@ -26,7 +26,7 @@
               <div class="flex">
                 <div class="input-form my-2">
                   <label for="CreateStartDate">開始日</label><br>
-                  <input type="date" id="CreateStartDate" name="CreateStartDate">
+                  <input type="date" id="createStartDate" name="createStartDate">
                 </div>
   
                 <div class="input-form my-2 mx-2">
@@ -43,7 +43,7 @@
             </main>
 
             <footer class="modal__footer">
-              <button class="modal__btn modal__btn-primary" id="createuSbmitSchedule" type="submit">登録</button>
+              <button class="modal__btn modal__btn-primary" id="SbmitSchedule" type="submit">登録</button>
               <button class="modal__btn" data-micromodal-close aria-label="Close this dialog window">閉じる</button>
             </footer>
           </form>

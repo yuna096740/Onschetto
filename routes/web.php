@@ -35,3 +35,4 @@ Route::resource('posts', PostController::class)->only(['index']);
 // fullcalender
 Route::post('/schedule-add', [PostController::class, 'scheduleAdd'])->name('schedule-add');
 Route::post('/schedule-get', [PostController::class, 'scheduleGet'])->name('schedule-get');
+Route::post('/schedule-edit', [PostController::class, 'scheduleEdit'])->name('schedule-edit');

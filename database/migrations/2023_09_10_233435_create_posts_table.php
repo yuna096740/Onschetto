@@ -17,7 +17,6 @@ return new class extends Migration
             $table->date('startDate')      ->comment('開始日');
             $table->date('endDate')        ->comment('終了日');
             $table->string('eventName')    ->comment('イベント名');
-            $table->text('detail')         ->comment('詳細');
             $table->string('scheduleColor')->comment('予定色');
             $table->timestamps();
         });

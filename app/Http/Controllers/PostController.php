@@ -1,14 +1,23 @@
 <?php
 
+
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
+use App\Http\Controllers\User;
 use Illuminate\Http\Request;
 use App\Models\Post;
 
 class PostController extends Controller
 {
-    public function index(Request $request) 
+    public function __constract()
+    {
+        // ユーザーとしてログイン済みかどうか
+        $this->middleware('auth:users');
+    }
+
+    public function index() 
     {
         return view('posts.index');
     }
@@ -21,13 +30,15 @@ class PostController extends Controller
     public function scheduleAdd(Request $request)
     {
 
+        // 多重送信対策
+        $request->session()->regenerateToken();
+
         // 保存処理
         // validation
         $request->validate([
             'startDate'     => 'required|date',
             'endDate'       => 'required|date',
             'eventName'     => 'required|max:32',
-            'detail'        => 'required|max:80',
             'scheduleColor' => 'required|string',
         ]);
 
@@ -43,7 +54,6 @@ class PostController extends Controller
         $post->startDate = date('Y-m-d', $startDate);
         $post->endDate = date('Y-m-d', $endDate);
         $post->eventName = $request->input('eventName');
-        $post->detail = $request->input('detail');
         $post->scheduleColor = $request->input('scheduleColor');
         
         $post->save();
@@ -76,7 +86,7 @@ class PostController extends Controller
                 'startDate as start',
                 'endDate as end',
                 'eventName as title',
-                'scheduleColor as color'
+                'scheduleColor as color',
             )
             // FullCalendarの表示範囲のみ表示
             ->where('endDate', '>', $startDate)
@@ -84,14 +94,36 @@ class PostController extends Controller
             ->get();
     }
 
+    /**
+     * イベントを編集
+     * 
+     * @param Request $request
+     */
+    public function scheduleEdit(Request $request) 
+    {
+        // validation
+        $request->validate([
+            'startDate'     => 'required|date',
+            'endDate'       => 'required|date',
+            'eventName'     => 'required|max:32',
+            'scheduleColor' => 'required|string',
+        ]);
+
+        // 編集処理
+        $userId = Auth::id();
+        $post = Post::find($userId);
+
+        if ($post) {
+            // データが存在する場合の処理
+            $post->startDate = $request->input('startDate');
+            $post->endDate = $request->input('endDate');
+            $post->eventName = $request->input('eventName');
+            $post->scheduleColor = $request->input('scheduleColor');
+            
+            $post->save();
+            return redirect()->route('posts.index');
+        } else {
+            throw new \Exception('データが見つかりません');
+        }
+    }
 }
-    // public function editEvent(Request $request) 
-    // {
-    //     $request->validate([
-    //         'startDate'     => 'required|date',
-    //         'endDate'       => 'required|date',
-    //         'eventName'     => 'required|max:32',
-    //         'detail'        => 'required|max:80',
-    //         'scheduleColor' => 'required|string'
-    //     ])
-    // }

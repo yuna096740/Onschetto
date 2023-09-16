@@ -25,7 +25,7 @@
 
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <!-- 開くボタン -->
-                    <button class="modal__btn" data-micromodal-trigger="newScheduleModal">Create Schedule</button>
+                    <button class="modal__btn" data-micromodal-trigger="clickScheduleModal">Create Schedule</button>
                 </div>
             </div>
 
