@@ -28,11 +28,6 @@ document.addEventListener('DOMContentLoaded', function() {
         // 日付をクリック、または範囲を選択したイベント
         dateClick: function (info) {
           MicroModal.show('clickScheduleModal');
-          
-          const eventName = document.getElementById('eventName');
-          const startDate = document.getElementById('startDate');
-          const endDate = document.getElementById('endDate');
-          const scheduleColor = document.getElementById('scheduleColor');
 
           const submitSchedule = document.getElementById('submitSchedule');
           submitSchedule.addEventListener('click', buttonClick);
@@ -40,10 +35,10 @@ document.addEventListener('DOMContentLoaded', function() {
           function buttonClick() {
             // Laravelの登録処理の呼び出し
             const data = {
-              startDate: startDate,
-              endDate: endDate,
-              eventName: eventName,
-              scheduleColor: scheduleColor,
+              startDate: info.start.valueOf(),
+              endDate: info.end.valueOf(),
+              eventName: info.title,
+              scheduleColor: info.color,
             };
 
             axios
@@ -54,6 +49,7 @@ document.addEventListener('DOMContentLoaded', function() {
                       title: eventName,
                       start: startDate,
                       end: endDate,
+                      allDay: true,
                   });
               })
               .catch(() => {
