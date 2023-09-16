@@ -21,12 +21,12 @@
               <div class="flex">
                 <div class="input-form my-2">
                   <label for="startDate">開始日</label><br>
-                  <input type="date" id="startDate" name="startDate">
+                  <input type="date" id="startDate" name="startDate" value="">
                 </div>
   
                 <div class="input-form my-2 mx-2">
                   <label for="endDate">終了日</label><br>
-                  <input type="date" id="endDate" name="endDate">
+                  <input type="date" id="endDate" name="endDate" value="">
                 </div>
               </div>
 

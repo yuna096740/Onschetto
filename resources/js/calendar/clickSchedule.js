@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function() {
       dateClick: function (info) {
         const createStartDate = formatDate(info.date);
         const createEndDate = formatDate(new Date(info.date));
-        console.log(createStartDate);
+        console.log("初期値", createStartDate);
 
         // "YYYY-MM-DD" 形式の文字列に変換
         function formatDate(date) {
@@ -40,8 +40,8 @@ document.addEventListener('DOMContentLoaded', function() {
           return `${year}-${month}-${day}`;
         }
 
-        document.getElementById('createStartDate').value = createStartDate;
-        document.getElementById('createEndDate').value = createEndDate;
+        document.getElementById('startDate').value = createStartDate;
+        document.getElementById('endDate').value = createEndDate;
         MicroModal.show('clickScheduleModal');
 
         const submitSchedule = document.getElementById('submitSchedule');
@@ -103,6 +103,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         const editStartDate = info.event.start ? formatDate(info.event.start) : "";
         const editEndDate = info.event.end ? formatDate(info.event.end) : "";
+        console.log("editstartdate", editStartDate);
 
         // "YYYY-MM-DD" 形式の文字列に変換
         function formatDate(date) {
