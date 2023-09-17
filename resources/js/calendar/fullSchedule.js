@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let calendar = new Calendar(calendarEl, {
       plugins: [interactionPlugin, dayGridPlugin, timeGridPlugin, listPlugin],
       initialView: "dayGridMonth", // ポインタをクリックして日付の上にドラッグできる
-      dayMaxEvents: true, // イベントが多すぎる場合に「詳細」リンクを許可する
+      dayMaxEvents: true, // イベント多の場合「詳細」リンクを許可する
       selectable: true, // 日付クリックで日付モード
       navLinks: true,
       editable: true,
@@ -25,12 +25,13 @@ document.addEventListener('DOMContentLoaded', function() {
       },
       // 日本語化
       locale: "ja",
+      timeZone: 'Asia/Tokyo',
     
-      // 日付をクリック、または範囲を選択したイベント
+      // 登録機能
       dateClick: function (info) {
+        // クリックされた日付を取得
         const createStartDate = formatDate(info.date);
-        const createEndDate = formatDate(new Date(info.date));
-        console.log("初期値", createStartDate);
+        const createEndDate = formatDate(info.date);
 
         // "YYYY-MM-DD" 形式の文字列に変換
         function formatDate(date) {
@@ -40,6 +41,7 @@ document.addEventListener('DOMContentLoaded', function() {
           return `${year}-${month}-${day}`;
         }
 
+        // 初期値をセット(date)
         document.getElementById('startDate').value = createStartDate;
         document.getElementById('endDate').value = createEndDate;
         MicroModal.show('clickScheduleModal');
@@ -74,8 +76,8 @@ document.addEventListener('DOMContentLoaded', function() {
           };
       },
   
+      // Laravelのイベント取得処理の呼び出し
       events: function (info, successCallback, failureCallback) {
-        // Laravelのイベント取得処理の呼び出し
         axios
           .post("/schedule-get", {
             eventId : info.id,
@@ -83,10 +85,8 @@ document.addEventListener('DOMContentLoaded', function() {
             endDate: info.end.valueOf(),
           })
           .then((response) => {
-            // 追加したイベントを削除
-            calendar.removeAllEvents();
-            // カレンダーに読み込み
-            successCallback(response.data);
+            calendar.removeAllEvents(); // 追加したイベントを削除
+            successCallback(response.data); // カレンダーに読み込み
           })
           .catch((error) => {
             // バリデーションエラーetc
@@ -96,14 +96,13 @@ document.addEventListener('DOMContentLoaded', function() {
   
       },
 
+      // 編集機能 & 削除機能
       eventClick: function(info) {
         const eventId = info.event.id;
         const editEventName = info.event.title;
         const editScheduleColor = info.event.backgroundColor;
-
-        const editStartDate = info.event.start ? formatDate(info.event.start) : "";
-        const editEndDate = info.event.end ? formatDate(info.event.end) : "";
-        console.log("editstartdate", editStartDate);
+        const editStartDate = formatDate(info.event.start);
+        const editEndDate = formatDate(info.event.end);
 
         // "YYYY-MM-DD" 形式の文字列に変換
         function formatDate(date) {
@@ -121,6 +120,7 @@ document.addEventListener('DOMContentLoaded', function() {
         MicroModal.show('editScheduleModal');
 
 
+        // 削除ボタンを押下
         const submitDeleteSchedule = document.getElementById("submitDeleteSchedule");
         submitDeleteSchedule.addEventListener('click', buttonClick);
 
@@ -133,9 +133,48 @@ document.addEventListener('DOMContentLoaded', function() {
             form.submit();
           }
         };
-      }
+      },
     });
+
     calendar.render();
+    
+    // 検索機能
+    document.getElementById("searchButton").addEventListener("click", function () {
+
+      document.getElementById("clearButton").style.display ="block";
+      // 文字列内のすべての文字に対して小文字変換(日本語は変換されない)
+      const searchText = document.getElementById("searchSchedule").value.toLowerCase();
+      const searchDate = document.getElementById("searchDate").value;
+    
+      // イベントを取得
+      const events = calendar.getEvents();
+      
+      // カレンダー上のすべてのイベントを非表示にする
+      events.forEach(function (event) {
+        event.remove();
+      });
+      
+      // 検索条件に一致するイベントだけをカレンダーに追加
+      events.forEach(function (event) {
+        // タイトルが存在しない場合は空文字に設定
+        const eventTitle = event.title ? event.title.toLowerCase() : "";
+        const eventStartDate = event.start.toISOString().split("T")[0];
+
+        if ((eventTitle.includes(searchText) || searchText === "") && (eventStartDate === searchDate || searchDate === "")) {
+          event.remove(); // 一度削除してから再度追加することで表示を更新
+          calendar.addEvent(event);
+        }
+      });
+    });
+
+    // ファオームクリア & イベント再描写
+    document.getElementById("clearButton").addEventListener("click", function () {
+      document.getElementById("searchSchedule").value = ""; // タイトル検索欄をクリア
+      document.getElementById("searchDate").value = ""; // 日付検索欄をクリア
+
+      // イベントを全て表示
+      calendar.refetchEvents();
+    });
   } else {
     console.error("calendarEl が存在しません。");
   }

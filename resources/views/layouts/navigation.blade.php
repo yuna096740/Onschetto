@@ -27,6 +27,7 @@
                     <!-- 開くボタン -->
                     <button class="modal__btn" data-micromodal-trigger="createScheduleModal">Create Schedule</button>
                 </div>
+
             </div>
 
             <!-- Settings Dropdown -->
