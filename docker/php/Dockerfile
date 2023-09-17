@@ -1,5 +1,5 @@
 FROM php:8.2-fpm
-# # Docker外にいるブラウザから、appサーバー内にいるViteが見えるようにする
+# Docker外にいるブラウザから、appサーバー内にいるViteが見えるようにする
 EXPOSE 5173
 RUN apt-get update \
     && apt-get install -y \

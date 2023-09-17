@@ -67,6 +67,8 @@ class PostController extends Controller
      */
     public function scheduleGet(Request $request)
     {
+        $userId = Auth::id();
+        
         // validation
         $request->validate([
             'startDate' => 'required|integer',
@@ -88,6 +90,7 @@ class PostController extends Controller
                 'scheduleColor as color',
             )
             // FullCalendarの表示範囲のみ表示
+            ->where('user_id', $userId)
             ->where('endDate', '>', $startDate)
             ->where('startDate', '<', $endDate)
             ->get();
