@@ -1,5 +1,5 @@
 import './bootstrap';
-import './calendar/clickSchedule';
+import './calendar/fullSchedule';
 import './calendar/settingDate';
 
 import Alpine from 'alpinejs';

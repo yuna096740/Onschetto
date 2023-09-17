@@ -25,6 +25,7 @@ document.addEventListener('DOMContentLoaded', function() {
       },
       // 日本語化
       locale: "ja",
+      timeZone: 'Asia/Tokyo',
     
       // 登録機能
       dateClick: function (info) {
@@ -139,25 +140,40 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // 検索機能
     document.getElementById("searchButton").addEventListener("click", function () {
+
+      document.getElementById("clearButton").style.display ="block";
       // 文字列内のすべての文字に対して小文字変換(日本語は変換されない)
-      const searchText = document.getElementById("searchSchedule").value.toLowerCase(); 
+      const searchText = document.getElementById("searchSchedule").value.toLowerCase();
+      const searchDate = document.getElementById("searchDate").value;
     
       // イベントを取得
       const events = calendar.getEvents();
-    
+      
       // カレンダー上のすべてのイベントを非表示にする
       events.forEach(function (event) {
         event.remove();
       });
-    
+      
       // 検索条件に一致するイベントだけをカレンダーに追加
       events.forEach(function (event) {
-        const eventTitle = event.title.toLowerCase();
-        if (eventTitle.includes(searchText)) {
+        // タイトルが存在しない場合は空文字に設定
+        const eventTitle = event.title ? event.title.toLowerCase() : "";
+        const eventStartDate = event.start.toISOString().split("T")[0];
+
+        if ((eventTitle.includes(searchText) || searchText === "") && (eventStartDate === searchDate || searchDate === "")) {
           event.remove(); // 一度削除してから再度追加することで表示を更新
           calendar.addEvent(event);
         }
       });
+    });
+
+    // ファオームクリア & イベント再描写
+    document.getElementById("clearButton").addEventListener("click", function () {
+      document.getElementById("searchSchedule").value = ""; // タイトル検索欄をクリア
+      document.getElementById("searchDate").value = ""; // 日付検索欄をクリア
+
+      // イベントを全て表示
+      calendar.refetchEvents();
     });
   } else {
     console.error("calendarEl が存在しません。");
