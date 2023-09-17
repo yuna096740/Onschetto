@@ -39,16 +39,17 @@
 
           </main>
 
-          <footer class="modal__footer">
-            <button class="modal__btn modal__btn-primary" id="editSbmitSchedule" type="submit">編集する</button>
-            <button class="modal__btn" data-micromodal-close aria-label="Close this dialog window">閉じる</button>
+          <footer class="modal__footer flex justify-between">
+            <button id="editSbmitSchedule" class="text-sm bg-green-600 rounded text-white hover:bg-green-700 py-2 px-4" type="submit">更新する</button>
+            <button data-micromodal-close aria-label="Close this dialog window" class="text-sm bg-gray-500 rounded text-white hover:bg-gray-700 py-2 px-4">閉じる</button>
           </footer>
         </form>
 
         <form id="deleteSchedule" action="{{ route('schedule-delete') }}" method="POST">
           @csrf
           <input type="hidden" name="id">
-          <button id="submitDeleteSchedule" class="modal__btn" type="submit">削除する</button>
+          
+          <button id="submitDeleteSchedule" class="text-sm bg-red-600 rounded text-white hover:bg-red-700 py-2 px-4" type="submit">削除する</button>
         </form>
       </div>
     </div>

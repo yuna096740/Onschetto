@@ -10,7 +10,7 @@
   <div class="flex justify-between mt-2">
     
     <div>
-      <button class="rounded bg-gray-500 text-white hover:bg-gray-700 px-5 py-2" data-micromodal-trigger="createScheduleModal">新規予定</button>
+      <button class="rounded bg-gray-500 text-white hover:bg-gray-700 px-5 py-2" data-micromodal-trigger="createScheduleModal">新規作成</button>
     </div>
     
     <form>
