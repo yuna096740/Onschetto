@@ -38,6 +38,7 @@ https://github.com/yuna096740/Onschetto/assets/129647184/1f590252-892d-49e1-b5c7
   |  |- PHP
   |     |-Dockerfile
   |     |-php.ini
+  |     |-phpmyadmin
   |- docker-compose.yml
 ```
 ## 機能一覧
