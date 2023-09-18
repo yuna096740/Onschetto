@@ -1,6 +1,14 @@
+@section('title', 'ONschetto Sign in')
+
 <x-guest-layout>
     <form method="POST" action="{{ route('register') }}">
         @csrf
+
+        <div class="mb-10">
+            <a href="/">
+                <img src="{{ asset('img/onschettoLogo.svg') }}">
+            </a>
+        </div>
 
         <!-- Name -->
         <div>
