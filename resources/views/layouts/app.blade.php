@@ -15,7 +15,7 @@
         <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
 
         <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/css/modal.css'])
+        @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/css/modal.css', 'resources/css/fullcalendar.css'])
         
     </head>
     <body class="font-sans antialiased">
