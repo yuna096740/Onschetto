@@ -1,0 +1,61 @@
+.fc .fc-scrollgrid {
+  border-width: 0 0 0 0; /* 外側の枠線消す */
+  font-size: 20px;
+  font-weight: normal;
+}
+.fc-theme-standard td, .fc-theme-standard th {
+  height: 60px; /* 枠の高さ指定 */
+  border: none; /* 枠のボーダー消す */
+}
+
+.fc .fc-daygrid-day.fc-day-today .fc-daygrid-day-frame {
+  background: rgba(49,159,141,0.1);
+}
+/* 日付を枠の高さいっぱいに */
+.fc .fc-daygrid-day-frame {
+  height: 100%;
+}
+/* カレンダーの+more表示変更 */
+.fc-direction-ltr .fc-daygrid-more-link {
+  float: left;
+  font-size: 13px;
+  opacity: 0.7;
+}
+.fc-h-event .fc-event-title-container {
+  font-size: 13px;
+}
+
+/* headerToolbarのスタイル変更 */
+.fc .fc-button-primary {
+  background: none;
+  border: none;
+  color: black;
+}
+.fc .fc-button-primary:disabled {
+  background: none;
+  border: none;
+  color: black;
+  opacity: 1;
+}
+.fc .fc-button-primary:not(:disabled).fc-button-active, .fc .fc-button-primary:not(:disabled):active {
+  background-color: initial;
+  border-color: initial;
+  color: black;
+}
+/* 丸みを消す */
+.fc .fc-button {
+  border-radius: 0;
+}
+/* 20oo年o月のスタイル変更 */
+.fc .fc-toolbar-title {
+  font-size: 1.4em;
+}
+/* 日付を枠の左へ */
+.fc .fc-daygrid-day-top {
+  align-items: start;
+  justify-content: start;
+  text-align: start;
+}
+.fc .fc-popover {
+  z-index: 2;
+}

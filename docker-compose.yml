@@ -21,6 +21,7 @@ services:
     # (/docker/php/Dockerfileにも記述)
     ports:
       - 5173:5173
+      - 5500:5500
     volumes:
       - ./:/src
       # 除外することで動作の高速化を図れる(node_modules, vendor)
