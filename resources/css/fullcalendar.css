@@ -20,6 +20,7 @@
   float: left;
   font-size: 13px;
   opacity: 0.7;
+  color:white;
 }
 .fc-h-event .fc-event-title-container {
   font-size: 13px;
@@ -29,18 +30,18 @@
 .fc .fc-button-primary {
   background: none;
   border: none;
-  color: black;
+  color: white;
 }
 .fc .fc-button-primary:disabled {
   background: none;
   border: none;
-  color: black;
+  color: white;
   opacity: 1;
 }
 .fc .fc-button-primary:not(:disabled).fc-button-active, .fc .fc-button-primary:not(:disabled):active {
   background-color: initial;
   border-color: initial;
-  color: black;
+  color: white;
 }
 /* 丸みを消す */
 .fc .fc-button {
@@ -49,6 +50,7 @@
 /* 20oo年o月のスタイル変更 */
 .fc .fc-toolbar-title {
   font-size: 1.4em;
+  color: white;
 }
 /* 日付を枠の左へ */
 .fc .fc-daygrid-day-top {
@@ -58,4 +60,29 @@
 }
 .fc .fc-popover {
   z-index: 2;
+}
+/* 日付のスタイル変更 */
+.fc .fc-daygrid-day-number {
+  color: white;
+}
+/* 曜日のスタイル変更 */
+.fc .fc-col-header-cell-cushion {
+  color: white;
+}
+/* week表示時 */
+.fc .fc-timegrid-slot-label-cushion {
+  color: white;
+}
+.fc .fc-timegrid-slot {
+  border-color: white;
+}
+.fc .fc-list-table td {
+  color: white;
+}
+.fc a[data-navlink] {
+  color: white;
+}
+/* all-day logo */
+.fc .fc-timegrid-axis-cushion {
+  color: white;
 }

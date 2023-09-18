@@ -102,7 +102,15 @@ document.addEventListener('DOMContentLoaded', function() {
         const editEventName = info.event.title;
         const editScheduleColor = info.event.backgroundColor;
         const editStartDate = formatDate(info.event.start);
-        const editEndDate = formatDate(info.event.end);
+        let editEndDate = info.event.end;
+ 
+        // startとendが同じ日付の場合endがnullになる為確認
+        if (editEndDate === null) {
+          // 代わりにstartの値を再代入し対応
+          editEndDate = formatDate(info.event.start);
+        } else {
+          editEndDate = formatDate(info.event.end);
+        }
 
         // "YYYY-MM-DD" 形式の文字列に変換
         function formatDate(date) {
