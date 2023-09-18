@@ -1,7 +1,4 @@
 @section('title', 'スケジュール')
-@include('posts.createScheduleModal')
-@include('posts.clickScheduleModal')
-@include('posts.editScheduleModal')
 
 <x-app-layout>
   <x-slot name="header">
@@ -27,7 +24,13 @@
       </div>
     </div>
     
-    <div id="calendar" ></div>
+    <x-clickScheduleModal>
+      <x-createScheduleModal>
+        <x-editScheduleModal>
+          <div id="calendar" ></div>
+        </x-editScheduleModal>
+      </x-createScheduleModal>
+    </x-clickScheduleModal>
     
   </div>
 </x-app-layout>

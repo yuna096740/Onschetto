@@ -77,10 +77,10 @@
   border-color: white;
 }
 .fc .fc-list-table td {
-  color: white;
+  color: rgb(139 92 246);
 }
 .fc a[data-navlink] {
-  color: white;
+  color: rgb(139 92 246);
 }
 /* all-day logo */
 .fc .fc-timegrid-axis-cushion {
