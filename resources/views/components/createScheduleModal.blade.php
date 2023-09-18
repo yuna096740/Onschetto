@@ -3,9 +3,9 @@
       <div class="modal__overlay" tabindex="-1" data-micromodal-close>
         <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="createScheduleModal-title">
           <header class="modal__header">
-            <h2 class="modal__title" id="createScheduleModal-title">
+            <h1 class="text-violet-700 text-2xl" id="createScheduleModal-title">
               スケジュール作成
-            </h2>
+            </h1>
             <button class="modal__close" aria-label="Close modal" data-micromodal-close></button>
           </header>
           <form name="createSchedule" method="POST" action='/schedule-add'>
@@ -20,7 +20,7 @@
 
               <div class="input-form my-2">
                 <label for="createDetail">詳細</label><br>
-                <textarea type="text" id="createDetail" name="createDetail" class="w-full py-2 border-b focus:outline-none focus:border-b-2 focus:border-indigo-500 placeholder-gray-500 placeholder-opacity-50" placeholder="詳細を入力"></textarea>
+                <textarea type="text" id="createDetail" name="createDetail" class="w-full py-2 border-b focus:outline-none focus:border-b-2 focus:border-violet-500 placeholder-gray-500 placeholder-opacity-50" placeholder="詳細を入力"></textarea>
               </div>
               
               <div class="flex">
@@ -43,8 +43,8 @@
             </main>
 
             <footer class="modal__footer">
-              <button class="modal__btn modal__btn-primary" id="SbmitSchedule" type="submit">登録</button>
-              <button class="modal__btn" data-micromodal-close aria-label="Close this dialog window">閉じる</button>
+              <button class="text-sm bg-violet-600 rounded text-white hover:bg-violet-900 py-2 px-4" id="SbmitSchedule" type="submit">登録</button>
+              <button class="text-sm bg-gray-500 rounded text-white hover:bg-gray-700 py-2 px-4" data-micromodal-close aria-label="Close this dialog window">閉じる</button>
             </footer>
           </form>
         </div>

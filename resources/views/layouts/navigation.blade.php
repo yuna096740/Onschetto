@@ -11,11 +11,25 @@
                 </div>
 
                 <!-- Navigation Links -->
-                <div class="hidden space-x-8 text-white sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('posts.index')" :active="request()->routeIs('posts.index')">
-                        <span class="text-white">{{ __('Schedule') }}</span>
-                    </x-nav-link>
-                </div>
+                @if (Auth::user())
+                    <div class="hidden space-x-8 text-white sm:-my-px sm:ml-10 sm:flex">
+                        <x-nav-link :href="route('posts.index')" :active="request()->routeIs('posts.index')">
+                            <span class="text-white">{{ __('Schedule') }}</span>
+                        </x-nav-link>
+                    </div>
+                @else
+                    <div class="hidden space-x-8 text-white sm:-my-px sm:ml-10 sm:flex">
+                        <x-nav-link :href="route('login')" :active="request()->routeIs('login')">
+                            <span class="text-white">{{ __('ログイン') }}</span>
+                        </x-nav-link>
+                    </div>
+
+                    <div class="hidden space-x-8 text-white sm:-my-px sm:ml-10 sm:flex">
+                        <x-nav-link :href="route('register')" :active="request()->routeIs('register')">
+                            <span class="text-white">{{ __('新規登録') }}</span>
+                        </x-nav-link>
+                    </div>
+                @endif
             </div>
 
             <!-- Settings Dropdown -->

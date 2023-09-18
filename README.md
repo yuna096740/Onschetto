@@ -1,12 +1,3 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
-
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
-
 # ONschetto (オン助っ人)
 ![スクリーンショット 2023-09-18 午後11 27 00](https://github.com/yuna096740/Laravel_lesson/assets/129647184/6c99b937-43de-43c1-8429-26174f7dc957)
 
@@ -61,7 +52,7 @@
 
 ## 製作で意識した点
 - ユーザーがストレスなく利用できるかを意識し製作に努めました。
-  - 予定新規登録の際にフォームにFullCalendarから取得した日付情報を表示し登録できるようにしました。
+  - 新規予定登録の際にフォームにFullCalendarから取得した日付情報を表示し登録できるようにしました。
   - 日付を押下した際にその日付をフォームに表示し登録できるようにしました。
   - 予定の色をフォームで選べるようにし予定の判別を行い易くしました。
   - 予定のタイトル、日付、またその両方からの検索を行えるようにし、予定の確認を行い易くしました。

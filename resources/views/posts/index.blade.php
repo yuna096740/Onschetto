@@ -14,8 +14,8 @@
         <button class="rounded bg-violet-700 border text-white hover:bg-violet-500 px-5 py-2" data-micromodal-trigger="createScheduleModal">新規作成</button>
       </div>
       
-      <div>
-        <button id="clearButton" style="display: none;" class="mt-3 text-white">リセットする</button>
+      <div class="flex">
+        <button id="clearButton" style="display: none;" class="mt-3 text-white text-sm">リセットする</button>
         
         <input type="text" id="searchSchedule" placeholder="イベントを検索する" class="w-60 mx-3 rounded border-b focus:outline-none focus:border-b-2 focus:border-indigo-500 placeholder-gray-500 placeholder-opacity-50">
         <input type="date" id="searchDate">
