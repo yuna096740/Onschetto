@@ -1,33 +1,36 @@
 @section('title', 'スケジュール')
-@include('posts.createScheduleModal')
-@include('posts.clickScheduleModal')
-@include('posts.editScheduleModal')
 
 <x-app-layout>
   <x-slot name="header">
-    <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+    <h2 class="font-semibold text-xl text-white leading-tight">
         {{ __('Schedule') }}
     </h2>
   </x-slot>
-  <div class="container mx-auto">
+  <div class="container mx-auto w-3/5">
   
     <div class="flex justify-between my-5">
       
       <div>
-        <button class="rounded bg-glay-400 border text-darck hover:bg-gray-200 px-5 py-2" data-micromodal-trigger="createScheduleModal">新規作成</button>
+        <button class="rounded bg-violet-700 border text-white hover:bg-violet-500 px-5 py-2" data-micromodal-trigger="createScheduleModal">新規作成</button>
       </div>
       
-      <div>
-        <button id="clearButton" style="display: none;" class="mt-3 text-gray-500">リセットする</button>
+      <div class="flex">
+        <button id="clearButton" style="display: none;" class="mt-3 text-white text-sm">リセットする</button>
         
         <input type="text" id="searchSchedule" placeholder="イベントを検索する" class="w-60 mx-3 rounded border-b focus:outline-none focus:border-b-2 focus:border-indigo-500 placeholder-gray-500 placeholder-opacity-50">
         <input type="date" id="searchDate">
         
-        <button id="searchButton" class="rounded bg-glay-400 border text-darck hover:bg-gray-200 ml-3 px-5 py-2">検索</button>
+        <button id="searchButton" class="rounded bg-violet-700 border text-white hover:bg-violet-500 ml-3 px-5 py-2">検索</button>
       </div>
     </div>
     
-    <div id="calendar" ></div>
+    <x-clickScheduleModal>
+      <x-createScheduleModal>
+        <x-editScheduleModal>
+          <div id="calendar" ></div>
+        </x-editScheduleModal>
+      </x-createScheduleModal>
+    </x-clickScheduleModal>
     
   </div>
 </x-app-layout>
