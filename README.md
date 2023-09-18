@@ -19,7 +19,9 @@ https://github.com/yuna096740/Onschetto/assets/129647184/1f590252-892d-49e1-b5c7
 
 - PHP v8.2.10
 - LARAVEL v10.22.0
-- Docker/docker-compose
+- Docker v24.0.5/docker-compose
+- Nginx
+- MySQL
 - Git, GitHub
 - tailwind
 - JavaScript
