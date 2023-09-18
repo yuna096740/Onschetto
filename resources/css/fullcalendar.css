@@ -56,3 +56,6 @@
   justify-content: start;
   text-align: start;
 }
+.fc .fc-popover {
+  z-index: 2;
+}
