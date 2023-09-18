@@ -9,7 +9,7 @@
         {{ __('Schedule') }}
     </h2>
   </x-slot>
-  <div class="container mx-auto">
+  <div class="container mx-auto w-3/5">
   
     <div class="flex justify-between my-5">
       
