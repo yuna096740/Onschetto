@@ -32,7 +32,7 @@
             @endif
 
             <!-- Page Content -->
-            <main>
+            <main class="h-full">
                 @yield('content')
 
                 @if(isset($slot))
@@ -40,7 +40,9 @@
                 @endif
 
                 {{-- Page Footer --}}
-                @include('layouts.footer')
+                <footer>
+                    @include('layouts.footer')
+                </footer>
             </main>
         </div>
     </body>
