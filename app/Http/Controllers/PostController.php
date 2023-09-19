@@ -48,15 +48,18 @@ class PostController extends Controller
         $userId = Auth::id();
         $post = new Post;
 
-        $post->user_id = $userId;
-        $post->startDate = date('Y-m-d', $startDate);
-        $post->endDate = date('Y-m-d', $endDate);
-        $post->eventName = $request->input('eventName');
-        $post->scheduleColor = $request->input('scheduleColor');
-        
-        $post->save();
-
-        return view("/posts/index")->with('flashSuccess', 'イベントを追加しました');
+        if ($post) {
+            $post->user_id = $userId;
+            $post->startDate = date('Y-m-d', $startDate);
+            $post->endDate = date('Y-m-d', $endDate);
+            $post->eventName = $request->input('eventName');
+            $post->scheduleColor = $request->input('scheduleColor');
+            
+            $post->save();
+            return redirect()->route('posts.index')->with('flashSuccess', 'イベントを追加しました');
+        } else {
+            return redirect()->route('posts.index')->with('flashError', '追加に失敗しました');
+        }
   
     }
 
@@ -72,7 +75,7 @@ class PostController extends Controller
         // validation
         $request->validate([
             'startDate' => 'required|integer',
-            'endDate' => 'required|integer'
+            'endDate'   => 'required|integer'
         ]);
 
         // カレンダー表示期間
@@ -126,7 +129,7 @@ class PostController extends Controller
             $post->save();
             return redirect()->route('posts.index')->with('flashSuccess', '変更しました');
         } else {
-            throw new \Exception('データが見つかりません');
+            return redirect()->route('posts.index')->with('flashError', 'データが見つかりません');
         }
     }
 
@@ -141,7 +144,7 @@ class PostController extends Controller
         $post = Post::find($postId);
 
         if (!$post) {
-            return response()->json(['success' => false, 'message' => '削除対象のデータが見つかりません']);
+            return redirect()->route('posts.index')->with('flashError', '削除に失敗しました');
         }
 
         // データが存在する場合は削除処理を続行
