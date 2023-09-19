@@ -25,11 +25,9 @@
     </div>
     
     <x-clickScheduleModal>
-      <x-createScheduleModal>
-        <x-editScheduleModal>
-          <div id="calendar" ></div>
-        </x-editScheduleModal>
-      </x-createScheduleModal>
+      <x-editScheduleModal>
+        <div id="calendar" ></div>
+      </x-editScheduleModal>
     </x-clickScheduleModal>
     
   </div>
