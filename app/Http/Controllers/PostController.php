@@ -56,7 +56,7 @@ class PostController extends Controller
         
         $post->save();
 
-        return view("/posts/index");
+        return view("/posts/index")->with('flashSuccess', 'イベントを追加しました');
   
     }
 
@@ -124,7 +124,7 @@ class PostController extends Controller
             $post->scheduleColor = $request->input('scheduleColor');
             
             $post->save();
-            return redirect()->route('posts.index');
+            return redirect()->route('posts.index')->with('flashSuccess', '変更しました');
         } else {
             throw new \Exception('データが見つかりません');
         }
@@ -147,6 +147,6 @@ class PostController extends Controller
         // データが存在する場合は削除処理を続行
         $post->delete();
 
-        return redirect()->route('posts.index');
+        return redirect()->route('posts.index')->with('flashSuccess', '予定を削除しました');
     }
 }

@@ -8,7 +8,7 @@
 開発環境はDockerで構築し、開発言語、FWはPHP/Laravel で個人製作したポートフォリオです。
 
 ## 使用イメージ
-https://github.com/yuna096740/Onschetto/assets/129647184/1f590252-892d-49e1-b5c7-58354dbcfdc6
+https://github.com/yuna096740/Laravel_lesson/assets/129647184/aed35b70-aa1d-4c49-a21a-ce0266b9b64f
 
 ## 製作経緯
   日々の学習の管理でスケジュールアプリを使用していますが、とても動作が重く感じておりました。<br>

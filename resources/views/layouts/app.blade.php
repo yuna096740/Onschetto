@@ -14,6 +14,9 @@
         <!-- fullcalender -->
         <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
 
+        <!-- Toastr.js -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
+
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/css/modal.css', 'resources/css/fullcalendar.css'])
         
@@ -45,5 +48,10 @@
                 </footer>
             </main>
         </div>
+
+            <!-- Toastr.js -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+        @include('layouts.flashMessage')
     </body>
 </html>
