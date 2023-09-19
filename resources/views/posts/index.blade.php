@@ -8,11 +8,11 @@
   </x-slot>
   <div class="container mx-auto w-3/5">
   
-    <div class="flex justify-between my-5">
+    <div class="flex justify-end my-5">
       
-      <div>
+      {{-- <div>
         <button class="rounded bg-violet-700 border text-white hover:bg-violet-500 px-5 py-2" data-micromodal-trigger="createScheduleModal">新規作成</button>
-      </div>
+      </div> --}}
       
       <div class="flex">
         <button id="clearButton" style="display: none;" class="mt-3 text-white text-sm">リセットする</button>

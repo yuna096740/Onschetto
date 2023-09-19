@@ -17,11 +17,6 @@
                 <label for="createEventName">予定</label><br>
                 <input type="title" id="createEventName" name="createEventName" class="w-full py-2 border-b focus:outline-none focus:border-b-2 focus:border-indigo-500 placeholder-gray-500 placeholder-opacity-50" placeholder="予定を入力">
               </div>
-
-              <div class="input-form my-2">
-                <label for="createDetail">詳細</label><br>
-                <textarea type="text" id="createDetail" name="createDetail" class="w-full py-2 border-b focus:outline-none focus:border-b-2 focus:border-violet-500 placeholder-gray-500 placeholder-opacity-50" placeholder="詳細を入力"></textarea>
-              </div>
               
               <div class="flex">
                 <div class="input-form my-2">
