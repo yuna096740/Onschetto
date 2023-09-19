@@ -2,3 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
+.onschettoTopLogo {
+  height: 80vh;
+}
