@@ -38,7 +38,7 @@ services:
       - ./docker/mysql:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: database
+      MYSQL_DATABASE: onschetto-mysql
       MYSQL_USER: root
       MYSQL_PASSWORD: root
       TZ: 'Asia/Tokyo'
