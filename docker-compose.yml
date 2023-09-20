@@ -40,7 +40,7 @@ services:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: onschetto-mysql
       MYSQL_USER: root
-      MYSQL_PASSWORD: root
+      MYSQL_PASSWORD: onschetto-key
       TZ: 'Asia/Tokyo'
     # 開発中にHeidiSQLやSequel Aceを使ってDBの中身を見るために必要
     ports:
