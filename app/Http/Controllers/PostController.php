@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\User;
 use Illuminate\Http\Request;
 use App\Models\Post;
+use DateTime;
 
 class PostController extends Controller
 {
@@ -49,6 +50,12 @@ class PostController extends Controller
         $post = new Post;
 
         if ($post) {
+
+            // startDate & endDateが正しく入力されているか
+            if ($request->input('startDate') === $request->input('endDate')) {
+                return redirect()->route('posts.index')->with('flashError', '日付を正しく入力してください');
+            }
+
             $post->user_id = $userId;
             $post->startDate = date('Y-m-d', $startDate);
             $post->endDate = date('Y-m-d', $endDate);
@@ -120,11 +127,18 @@ class PostController extends Controller
         $post = Post::find($eventId);
 
         if ($post) {
+
+            // startDate & endDateが正しく入力されているか
+            if ($request->input('startDate') === $request->input('endDate')) {
+                return redirect()->route('posts.index')->with('flashError', '日付を正しく入力してください');
+            }
+
             // データが存在する場合の処理
             $post->startDate = $request->input('startDate');
             $post->endDate = $request->input('endDate');
             $post->eventName = $request->input('eventName');
             $post->scheduleColor = $request->input('scheduleColor');
+
             
             $post->save();
             return redirect()->route('posts.index')->with('flashSuccess', '変更しました');
