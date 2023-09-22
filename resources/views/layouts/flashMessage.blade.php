@@ -9,7 +9,11 @@
     toastr.success("{{ session('flashSuccess') }}");
   @endif
 
-  @if (Session::has('flashError'))
+  @if ($errors->any())
+    @foreach($errors->all() as $error)
+      toastr.error("{{ $error }}");
+    @endforeach
+  @else (Session::has('flashError'))
     toastr.error("{{ session('flashError') }}");
   @endif
 
