@@ -48,7 +48,7 @@ return [
             'url' => env('DATABASE_URL'),
             'host' => env('DB_HOST', 'onschetto-mysql'),
             'port' => env('DB_PORT', '3306'),
-            'database' => env('DB_DATABASE', 'onschetto'),
+            'database' => env('DB_DATABASE', 'onschetto-mysql'),
             'username' => env('DB_USERNAME', 'forge'),
             'password' => env('DB_PASSWORD', 'root'),
             'unix_socket' => env('DB_SOCKET', ''),
