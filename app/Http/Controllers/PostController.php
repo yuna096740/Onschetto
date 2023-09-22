@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\User;
 use Illuminate\Http\Request;
 use App\Models\Post;
@@ -34,12 +35,27 @@ class PostController extends Controller
 
         // 保存処理
         // validation
-        $request->validate([
+        $rules = [
             'startDate'     => 'required|date',
             'endDate'       => 'required|date',
-            'eventName'     => 'required|max:32',
+            'eventName'     => 'required|between:0,32',
             'scheduleColor' => 'required|string',
-        ]);
+        ];
+
+        $message = [
+            'eventName.required'     => 'タイトルを入力してください',
+            'startDate.required'     => '開始日を入力してください',
+            'endDate.required'       => '終了日を入力してください',
+            'scheduleColor.required' => 'カレンダーの色を選択してください',
+        ];
+
+        // バリデーションを実行
+        $validator = Validator::make($request->all(), $rules, $message);
+
+        if ($validator->fails()) {
+            // バリデーションエラーがある場合の処理
+            return redirect()->route('posts.index')->withErrors($validator)->withInput();
+        }
 
         // 日付をUnixタイムスタンプに変換
         $startDate = \Carbon\Carbon::parse($request->input('startDate'))->timestamp;
@@ -114,13 +130,29 @@ class PostController extends Controller
     public function scheduleEdit(Request $request) 
     {
         // validation
-        $request->validate([
+        $rules = [
             'id'            => 'required|integer',
             'startDate'     => 'required|date',
             'endDate'       => 'required|date',
-            'eventName'     => 'required|max:32',
+            'eventName'     => 'required|between:0,32',
             'scheduleColor' => 'required|string',
-        ]);
+        ];
+
+        $message = [
+            'eventName.required'     => 'タイトルを入力してください',
+            'startDate.required'     => '開始日を入力してください',
+            'endDate.required'       => '終了日を入力してください',
+            'scheduleColor.required' => 'カレンダーの色を選択してください',
+        ];
+
+        // バリデーションを実行
+        $validator = Validator::make($request->all(), $rules, $message);
+
+        if ($validator->fails()) {
+            // バリデーションエラーがある場合の処理
+            return redirect()->route('posts.index')->withErrors($validator)->withInput();
+        }
+
 
         // 編集処理
         $eventId = $request->input('id');
