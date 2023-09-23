@@ -57,6 +57,7 @@ document.addEventListener('DOMContentLoaded', function() {
             endDate: info.end.valueOf(),
             eventName: info.title,
             scheduleColor: info.color,
+            description: info.description,
           };
 
           axios
@@ -65,6 +66,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 // イベントの追加
                 calendar.addEvent({
                     title: eventName,
+                    description: description,
                     start: startDate,
                     end: endDate,
                     allDay: true,
