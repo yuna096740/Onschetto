@@ -27,6 +27,13 @@ document.addEventListener('DOMContentLoaded', function() {
       // 日本語化
       locale: "ja",
       timeZone: 'Asia/Tokyo',
+
+      // Tippyを使用した吹き出し表示
+      eventDidMount: (e)=>{
+        tippy(e.el, {
+          content: e.event.extendedProps.description,
+        });
+      },
     
       // 登録機能
       dateClick: function (info) {

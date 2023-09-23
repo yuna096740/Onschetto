@@ -22,7 +22,7 @@
 
             <div class="input-form my-2">
               <label for="description">詳細</label><br>
-              <input type="title" rows="2" id="editDescription" name="editDescription" class="w-full py-2 border-b focus:outline-none focus:border-b-2 focus:border-violet-500 placeholder-gray-500 placeholder-opacity-50" placeholder="予定の詳細を入力">
+              <input type="title" rows="2" id="editDescription" name="description" class="w-full py-2 border-b focus:outline-none focus:border-b-2 focus:border-violet-500 placeholder-gray-500 placeholder-opacity-50" placeholder="予定の詳細を入力">
             </div>
 
             <div class="flex">

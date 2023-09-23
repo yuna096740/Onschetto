@@ -140,6 +140,7 @@ class PostController extends Controller
             'endDate'       => 'required|date',
             'eventName'     => 'required|between:0,32',
             'scheduleColor' => 'required|string',
+            'description'   => 'required|between:0,32',
         ];
 
         $message = [
@@ -147,6 +148,7 @@ class PostController extends Controller
             'startDate.required'     => '開始日を入力してください',
             'endDate.required'       => '終了日を入力してください',
             'scheduleColor.required' => 'カレンダーの色を選択してください',
+            'description.required'   => '詳細を入力してください',
         ];
 
         // バリデーションを実行

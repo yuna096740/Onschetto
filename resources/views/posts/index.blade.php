@@ -33,6 +33,7 @@
   </div>
 </x-app-layout>
 
+<!-- micromodal -->
 <script src="https://unpkg.com/micromodal/dist/micromodal.min.js"></script>
 <script>
     MicroModal.init({
