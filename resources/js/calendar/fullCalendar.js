@@ -3,6 +3,7 @@ import interactionPlugin from "@fullcalendar/interaction";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import listPlugin from "@fullcalendar/list";
+
 // 非同期通信を行うためのaxiosを追加
 import axios from 'axios';
 
@@ -94,6 +95,10 @@ document.addEventListener('DOMContentLoaded', function() {
             alert("登録に失敗しました");
           });
   
+      },
+
+      function(mouseEnterInfo) {
+        console.log(mouseEnterInfo);
       },
 
       // 編集機能 & 削除機能
