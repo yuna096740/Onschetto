@@ -107,6 +107,7 @@ document.addEventListener('DOMContentLoaded', function() {
       eventClick: function(info) {
         const eventId = info.event.id;
         const editEventName = info.event.title;
+        const editDescription = info.event.extendedProps.description;
         const editScheduleColor = info.event.backgroundColor;
         const editStartDate = formatDate(info.event.start);
         let editEndDate = info.event.end;
@@ -131,6 +132,7 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById("editEventName").value = editEventName;
         document.getElementById("editStartDate").value = editStartDate;
         document.getElementById("editEndDate").value = editEndDate;
+        document.getElementById("editDescription").value = editDescription;
         document.getElementById("editScheduleColor").value = editScheduleColor;
         MicroModal.show('editScheduleModal');
 

@@ -174,6 +174,7 @@ class PostController extends Controller
             $post->endDate = $request->input('endDate');
             $post->eventName = $request->input('eventName');
             $post->scheduleColor = $request->input('scheduleColor');
+            $post->description = $request->input('description');
 
             
             $post->save();

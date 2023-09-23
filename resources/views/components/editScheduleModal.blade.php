@@ -16,24 +16,29 @@
             <input type="hidden" id="id" value="" name="id">
 
             <div class="input-form my-2">
-              <label for="createEventName">予定</label><br>
+              <label for="eventName">予定</label><br>
               <input type="title" id="editEventName"  name="eventName" value="" class="w-full py-2 border-b focus:outline-none focus:border-b-2 focus:border-violet-500 placeholder-gray-500 placeholder-opacity-50" placeholder="予定を入力">
+            </div>
+
+            <div class="input-form my-2">
+              <label for="description">詳細</label><br>
+              <input type="title" rows="2" id="editDescription" name="editDescription" class="w-full py-2 border-b focus:outline-none focus:border-b-2 focus:border-violet-500 placeholder-gray-500 placeholder-opacity-50" placeholder="予定の詳細を入力">
             </div>
 
             <div class="flex">
               <div class="input-form my-2">
-                <label for="CreateStartDate">開始日</label><br>
+                <label for="startDate">開始日</label><br>
                 <input type="date" id="editStartDate" name="startDate" value="">
               </div>
 
               <div class="input-form my-2 mx-2">
-                <label for="createEndDate">終了日</label><br>
+                <label for="endDate">終了日</label><br>
                 <input type="date" id="editEndDate" name="endDate" value="">
               </div>
             </div>
 
             <div class="input-form my-2 mx-2">
-              <label for="createScheduleColor">予定色</label>
+              <label for="scheduleColor">予定色</label>
               <input type="color" id="editScheduleColor" name="scheduleColor" value="">
             </div>
 
