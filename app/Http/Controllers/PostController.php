@@ -38,8 +38,9 @@ class PostController extends Controller
         $rules = [
             'startDate'     => 'required|date',
             'endDate'       => 'required|date',
-            'eventName'     => 'required|between:0,32',
+            'eventName'     => 'required|between:0,18',
             'scheduleColor' => 'required|string',
+            'description'   => 'required|between:0,32',
         ];
 
         $message = [
@@ -47,6 +48,7 @@ class PostController extends Controller
             'startDate.required'     => '開始日を入力してください',
             'endDate.required'       => '終了日を入力してください',
             'scheduleColor.required' => 'カレンダーの色を選択してください',
+            'description.required'   => '詳細を入力してください',
         ];
 
         // バリデーションを実行
@@ -77,6 +79,7 @@ class PostController extends Controller
             $post->endDate = date('Y-m-d', $endDate);
             $post->eventName = $request->input('eventName');
             $post->scheduleColor = $request->input('scheduleColor');
+            $post->description = $request->input('description');
             
             $post->save();
             return redirect()->route('posts.index')->with('flashSuccess', 'イベントを追加しました');
@@ -114,6 +117,7 @@ class PostController extends Controller
                 'endDate as end',
                 'eventName as title',
                 'scheduleColor as color',
+                'description as description',
             )
             // FullCalendarの表示範囲のみ表示
             ->where('user_id', $userId)
@@ -136,6 +140,7 @@ class PostController extends Controller
             'endDate'       => 'required|date',
             'eventName'     => 'required|between:0,32',
             'scheduleColor' => 'required|string',
+            'description'   => 'required|between:0,32',
         ];
 
         $message = [
@@ -143,6 +148,7 @@ class PostController extends Controller
             'startDate.required'     => '開始日を入力してください',
             'endDate.required'       => '終了日を入力してください',
             'scheduleColor.required' => 'カレンダーの色を選択してください',
+            'description.required'   => '詳細を入力してください',
         ];
 
         // バリデーションを実行
@@ -170,6 +176,7 @@ class PostController extends Controller
             $post->endDate = $request->input('endDate');
             $post->eventName = $request->input('eventName');
             $post->scheduleColor = $request->input('scheduleColor');
+            $post->description = $request->input('description');
 
             
             $post->save();

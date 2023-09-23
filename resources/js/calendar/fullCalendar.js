@@ -3,6 +3,7 @@ import interactionPlugin from "@fullcalendar/interaction";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import listPlugin from "@fullcalendar/list";
+
 // 非同期通信を行うためのaxiosを追加
 import axios from 'axios';
 
@@ -26,6 +27,13 @@ document.addEventListener('DOMContentLoaded', function() {
       // 日本語化
       locale: "ja",
       timeZone: 'Asia/Tokyo',
+
+      // Tippyを使用した吹き出し表示
+      eventDidMount: (e)=>{
+        tippy(e.el, {
+          content: e.event.extendedProps.description,
+        });
+      },
     
       // 登録機能
       dateClick: function (info) {
@@ -56,6 +64,7 @@ document.addEventListener('DOMContentLoaded', function() {
             endDate: info.end.valueOf(),
             eventName: info.title,
             scheduleColor: info.color,
+            description: info.description,
           };
 
           axios
@@ -64,6 +73,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 // イベントの追加
                 calendar.addEvent({
                     title: eventName,
+                    description: description,
                     start: startDate,
                     end: endDate,
                     allDay: true,
@@ -96,10 +106,15 @@ document.addEventListener('DOMContentLoaded', function() {
   
       },
 
+      function(mouseEnterInfo) {
+        console.log(mouseEnterInfo);
+      },
+
       // 編集機能 & 削除機能
       eventClick: function(info) {
         const eventId = info.event.id;
         const editEventName = info.event.title;
+        const editDescription = info.event.extendedProps.description;
         const editScheduleColor = info.event.backgroundColor;
         const editStartDate = formatDate(info.event.start);
         let editEndDate = info.event.end;
@@ -124,6 +139,7 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById("editEventName").value = editEventName;
         document.getElementById("editStartDate").value = editStartDate;
         document.getElementById("editEndDate").value = editEndDate;
+        document.getElementById("editDescription").value = editDescription;
         document.getElementById("editScheduleColor").value = editScheduleColor;
         MicroModal.show('editScheduleModal');
 
