@@ -3,6 +3,7 @@ import interactionPlugin from "@fullcalendar/interaction";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import listPlugin from "@fullcalendar/list";
+import { formatDate } from "./formatDate";
 
 // 非同期通信を行うためのaxiosを追加
 import axios from 'axios';
@@ -40,14 +41,6 @@ document.addEventListener('DOMContentLoaded', function() {
         // クリックされた日付を取得
         const createStartDate = formatDate(info.date);
         const createEndDate = formatDate(info.date);
-
-        // "YYYY-MM-DD" 形式の文字列に変換
-        function formatDate(date) {
-          const year = date.getFullYear();
-          const month = String(date.getMonth() + 1).padStart(2, '0');
-          const day = String(date.getDate()).padStart(2, '0');
-          return `${year}-${month}-${day}`;
-        }
 
         // 初期値をセット(date)
         document.getElementById('startDate').value = createStartDate;
@@ -111,13 +104,6 @@ document.addEventListener('DOMContentLoaded', function() {
           startDate: formatDate(info.event.start),
           endDate: formatDate(info.event.end),
         };
-        // "YYYY-MM-DD" 形式の文字列に変換
-        function formatDate(date) {
-          const year = date.getFullYear();
-          const month = String(date.getMonth() + 1).padStart(2, '0');
-          const day = String(date.getDate()).padStart(2, '0');
-          return `${year}-${month}-${day}`;
-        }
         
         axios
           .post("/schedule-drop", data)
@@ -140,14 +126,6 @@ document.addEventListener('DOMContentLoaded', function() {
           endDate: formatDate(info.event.end),
         };
 
-        // "YYYY-MM-DD" 形式の文字列に変換
-        function formatDate(date) {
-          const year = date.getFullYear();
-          const month = String(date.getMonth() + 1).padStart(2, '0');
-          const day = String(date.getDate()).padStart(2, '0');
-          return `${year}-${month}-${day}`;
-        }
-        
         axios
           .post("/schedule-resize", data)
           .then(() => {
@@ -176,14 +154,6 @@ document.addEventListener('DOMContentLoaded', function() {
           editEndDate = formatDate(info.event.start);
         } else {
           editEndDate = formatDate(info.event.end);
-        }
-
-        // "YYYY-MM-DD" 形式の文字列に変換
-        function formatDate(date) {
-          const year = date.getFullYear();
-          const month = String(date.getMonth() + 1).padStart(2, '0');
-          const day = String(date.getDate()).padStart(2, '0');
-          return `${year}-${month}-${day}`;
         }
         
         document.getElementById("id").value = eventId;
