@@ -70,14 +70,13 @@ document.addEventListener('DOMContentLoaded', function() {
           axios
             .post("/schedule-add", data)
             .then(() => {
-                // イベントの追加
-                calendar.addEvent({
-                    title: eventName,
-                    description: description,
-                    start: startDate,
-                    end: endDate,
-                    allDay: true,
-                });
+              // イベントの追加
+              calendar.addEvent({
+                title: eventName,
+                description: description,
+                start: startDate,
+                end: endDate,
+              });
             })
             .catch(() => {
                 // バリデーションエラーetc
@@ -85,7 +84,7 @@ document.addEventListener('DOMContentLoaded', function() {
             });
           };
       },
-  
+
       // Laravelのイベント取得処理の呼び出し
       events: function (info, successCallback, failureCallback) {
         axios
@@ -106,10 +105,34 @@ document.addEventListener('DOMContentLoaded', function() {
   
       },
 
-      function(mouseEnterInfo) {
-        console.log(mouseEnterInfo);
+      // イベントをドラッグ&ドロップした時の登録処理
+      eventDrop: function(info) {
+        const data = {
+          id : info.event.id,
+          startDate: formatDate(info.event.start),
+          endDate: formatDate(info.event.end),
+        };
+        // "YYYY-MM-DD" 形式の文字列に変換
+        function formatDate(date) {
+          const year = date.getFullYear();
+          const month = String(date.getMonth() + 1).padStart(2, '0');
+          const day = String(date.getDate()).padStart(2, '0');
+          return `${year}-${month}-${day}`;
+        }
+        
+        axios
+          .post("/schedule-drop", data)
+          .then(() => {
+            calendar.render();
+            
+          })
+          .catch((error) => {
+            // バリデーションエラーetc
+            console.error("Error", error);
+            alert("登録に失敗しました");
+          });
       },
-
+  
       // 編集機能 & 削除機能
       eventClick: function(info) {
         const eventId = info.event.id;

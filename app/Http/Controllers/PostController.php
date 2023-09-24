@@ -187,6 +187,19 @@ class PostController extends Controller
     }
 
     /**
+     * ドロップイベントを編集
+     * 
+     * @param Request $request
+     */
+    public function scheduleDrop(Request $request)
+    {
+        $post = Post::find($request->id);
+        $post->startDate = $request->startDate;
+        $post->endDate = $request->endDate;
+        $post->save();
+    }
+
+    /**
      * イベントを削除
      * 
      * @param Request $request
