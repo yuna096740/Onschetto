@@ -102,7 +102,6 @@ document.addEventListener('DOMContentLoaded', function() {
             console.error("Error", error);
             alert("登録に失敗しました");
           });
-  
       },
 
       // イベントをドラッグ&ドロップした時の登録処理
@@ -124,7 +123,36 @@ document.addEventListener('DOMContentLoaded', function() {
           .post("/schedule-drop", data)
           .then(() => {
             calendar.render();
-            
+            toastr.success('変更しました');
+          })
+          .catch((error) => {
+            // バリデーションエラーetc
+            console.error("Error", error);
+            alert("登録に失敗しました");
+          });
+      },
+
+      // イベントバーのリサイズ時の処理
+      eventResize: function(info) {
+        const data = {
+          id : info.event.id,
+          startDate: formatDate(info.event.start),
+          endDate: formatDate(info.event.end),
+        };
+
+        // "YYYY-MM-DD" 形式の文字列に変換
+        function formatDate(date) {
+          const year = date.getFullYear();
+          const month = String(date.getMonth() + 1).padStart(2, '0');
+          const day = String(date.getDate()).padStart(2, '0');
+          return `${year}-${month}-${day}`;
+        }
+        
+        axios
+          .post("/schedule-resize", data)
+          .then(() => {
+            calendar.render();
+            toastr.success('変更しました');
           })
           .catch((error) => {
             // バリデーションエラーetc
