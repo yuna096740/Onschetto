@@ -108,11 +108,18 @@ document.addEventListener('DOMContentLoaded', function() {
 
       // イベントをドラッグ&ドロップした時の登録処理
       eventDrop: function(info) {
-        console.log(info.event.start);
+        // "YYYY-MM-DD" 形式の文字列に変換
+        function formatDate(date) {
+          const year = date.getFullYear();
+          const month = String(date.getMonth() + 1).padStart(2, '0');
+          const day = String(date.getDate()).padStart(2, '0');
+          return `${year}-${month}-${day}`;
+        }
+
         const data = {
           eventId : info.event.id,
-          startDate: info.event.start,
-          endDate: info.event.end,
+          startDate: formatDate(info.event.start),
+          endDate: formatDate(info.event.end),
         };
 
         axios
