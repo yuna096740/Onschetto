@@ -35,5 +35,6 @@ Route::middleware('auth')->group(function () {
     Route::post('/schedule-get', [PostController::class, 'scheduleGet'])->name('schedule-get');
     Route::post('/schedule-edit', [PostController::class, 'scheduleEdit'])->name('schedule-edit');
     Route::post('/schedule-delete', [PostController::class, 'scheduleDelete'])->name('schedule-delete');
+    Route::post('/schedule-drop', [PostController::class, 'scheduleDrop'])->name('schedule-drop');
 });
 require __DIR__.'/auth.php';

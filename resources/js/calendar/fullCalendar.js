@@ -70,14 +70,13 @@ document.addEventListener('DOMContentLoaded', function() {
           axios
             .post("/schedule-add", data)
             .then(() => {
-                // イベントの追加
-                calendar.addEvent({
-                    title: eventName,
-                    description: description,
-                    start: startDate,
-                    end: endDate,
-                    allDay: true,
-                });
+              // イベントの追加
+              calendar.addEvent({
+                title: eventName,
+                description: description,
+                start: startDate,
+                end: endDate,
+              });
             })
             .catch(() => {
                 // バリデーションエラーetc
@@ -108,6 +107,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
       // イベントをドラッグ&ドロップした時の登録処理
       eventDrop: function(info) {
+        const data = {
+          id : info.event.id,
+          startDate: formatDate(info.event.start),
+          endDate: formatDate(info.event.end),
+        };
         // "YYYY-MM-DD" 形式の文字列に変換
         function formatDate(date) {
           const year = date.getFullYear();
@@ -115,18 +119,12 @@ document.addEventListener('DOMContentLoaded', function() {
           const day = String(date.getDate()).padStart(2, '0');
           return `${year}-${month}-${day}`;
         }
-
-        const data = {
-          eventId : info.event.id,
-          startDate: formatDate(info.event.start),
-          endDate: formatDate(info.event.end),
-        };
-
+        
         axios
           .post("/schedule-drop", data)
-          .then((response) => {
-            calendar.removeAllEvents(); // 追加したイベントを削除
-            successCallback(response.data); // カレンダーに読み込み
+          .then(() => {
+            calendar.render();
+            
           })
           .catch((error) => {
             // バリデーションエラーetc
