@@ -102,7 +102,6 @@ document.addEventListener('DOMContentLoaded', function() {
             console.error("Error", error);
             alert("登録に失敗しました");
           });
-  
       },
 
       // イベントをドラッグ&ドロップした時の登録処理
@@ -124,7 +123,7 @@ document.addEventListener('DOMContentLoaded', function() {
           .post("/schedule-drop", data)
           .then(() => {
             calendar.render();
-            
+            toastr.success('変更しました');
           })
           .catch((error) => {
             // バリデーションエラーetc
