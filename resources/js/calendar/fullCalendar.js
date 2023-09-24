@@ -4,6 +4,7 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import listPlugin from "@fullcalendar/list";
 import { formatDate } from "./formatDate";
+// import { createEvent } from "./createEvent";
 
 // 非同期通信を行うためのaxiosを追加
 import axios from 'axios';
@@ -28,7 +29,6 @@ document.addEventListener('DOMContentLoaded', function() {
       // 日本語化
       locale: "ja",
       timeZone: 'Asia/Tokyo',
-
       // Tippyを使用した吹き出し表示
       eventDidMount: (e)=>{
         tippy(e.el, {
@@ -37,6 +37,7 @@ document.addEventListener('DOMContentLoaded', function() {
       },
     
       // 登録機能
+      // ...createEvent(calendarEl),
       dateClick: function (info) {
         // クリックされた日付を取得
         const createStartDate = formatDate(info.date);
