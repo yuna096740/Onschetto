@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', function() {
             });
           };
       },
-  
+
       // Laravelのイベント取得処理の呼び出し
       events: function (info, successCallback, failureCallback) {
         axios
@@ -106,10 +106,28 @@ document.addEventListener('DOMContentLoaded', function() {
   
       },
 
-      function(mouseEnterInfo) {
-        console.log(mouseEnterInfo);
-      },
+      // イベントをドラッグ&ドロップした時の登録処理
+      eventDrop: function(info) {
+        console.log(info.event.start);
+        const data = {
+          eventId : info.event.id,
+          startDate: info.event.start,
+          endDate: info.event.end,
+        };
 
+        axios
+          .post("/schedule-drop", data)
+          .then((response) => {
+            calendar.removeAllEvents(); // 追加したイベントを削除
+            successCallback(response.data); // カレンダーに読み込み
+          })
+          .catch((error) => {
+            // バリデーションエラーetc
+            console.error("Error", error);
+            alert("登録に失敗しました");
+          });
+      },
+  
       // 編集機能 & 削除機能
       eventClick: function(info) {
         const eventId = info.event.id;
