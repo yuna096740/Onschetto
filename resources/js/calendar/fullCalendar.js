@@ -205,6 +205,8 @@ document.addEventListener('DOMContentLoaded', function() {
         // タイトルが存在しない場合は空文字に設定
         const eventTitle = event.title ? event.title.toLowerCase() : "";
         const eventStartDate = event.start.toISOString().split("T")[0];
+        const eventEndDate = event.end.toISOString().split("T")[0];
+        console.log(eventStartDate <= eventEndDate);
 
         if ((eventTitle.includes(searchText) || searchText === "") && (eventStartDate === searchDate || searchDate === "")) {
           event.remove(); // 一度削除してから再度追加することで表示を更新
