@@ -39,7 +39,12 @@
 
             <div class="input-form my-2 mx-2">
               <label for="scheduleColor">予定色</label>
-              <input type="color" id="editScheduleColor" name="scheduleColor" value="">
+              <input type="color" id="editScheduleColor" name="scheduleColor" value="" list="defaultColor">
+              <datalist id="defaultColor">
+                <option value="#ff0000"></option>
+                <option value="#00ff00"></option>
+                <option value="#0000ff"></option>
+              </datalist>
             </div>
 
           </main>
