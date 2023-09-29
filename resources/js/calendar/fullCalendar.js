@@ -82,7 +82,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
       // Laravelのイベント取得処理の呼び出し
       events: function (info, successCallback) {
-        console.log("Date" , info.start);
         axios
           .post("/schedule-get", {
             eventId : info.id,

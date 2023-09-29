@@ -36,7 +36,7 @@
               </div>
 
               <div class="input-form my-2 mx-2">
-                <label for="color">予定色</label>
+                <label for="scheduleColor">予定色</label>
                 <input type="color" id="scheduleColor" name="scheduleColor"  list="defaultColor">
                 <datalist id="defaultColor">
                   <option value="#ff0000"></option>

@@ -159,7 +159,6 @@ class PostController extends Controller
             return redirect()->route('posts.index')->withErrors($validator)->withInput();
         }
 
-
         // 編集処理
         $eventId = $request->input('id');
         $post = Post::find($eventId);
