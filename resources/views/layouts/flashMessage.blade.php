@@ -13,7 +13,9 @@
     @foreach($errors->all() as $error)
       toastr.error("{{ $error }}");
     @endforeach
-  @else (Session::has('flashError'))
+  @endif
+  
+  @if (Session::has('flashError'))
     toastr.error("{{ session('flashError') }}");
   @endif
 

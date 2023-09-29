@@ -13,7 +13,7 @@
 
             @csrf
             
-            <input type="hidden" id="id" value="" name="id">
+            <input type="hidden" id="id" name="id">
 
             <div class="input-form my-2">
               <label for="eventName">予定</label><br>
@@ -28,18 +28,18 @@
             <div class="flex">
               <div class="input-form my-2">
                 <label for="startDate">開始日</label><br>
-                <input type="date" id="editStartDate" name="startDate" value="">
+                <input type="date" id="editStartDate" name="startDate">
               </div>
 
               <div class="input-form my-2 mx-2">
                 <label for="endDate">終了日</label><br>
-                <input type="date" id="editEndDate" name="endDate" value="">
+                <input type="date" id="editEndDate" name="endDate">
               </div>
             </div>
 
             <div class="input-form my-2 mx-2">
               <label for="scheduleColor">予定色</label>
-              <input type="color" id="editScheduleColor" name="scheduleColor" value="" list="defaultColor">
+              <input type="color" id="editScheduleColor" name="scheduleColor" list="defaultColor">
               <datalist id="defaultColor">
                 <option value="#ff0000"></option>
                 <option value="#00ff00"></option>

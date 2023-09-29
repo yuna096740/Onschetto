@@ -26,17 +26,17 @@
               <div class="flex">
                 <div class="input-form my-2">
                   <label for="startDate">開始日</label><br>
-                  <input type="date" id="startDate" name="startDate" value="">
+                  <input type="date" id="startDate" name="startDate">
                 </div>
   
                 <div class="input-form my-2 mx-2">
                   <label for="endDate">終了日</label><br>
-                  <input type="date" id="endDate" name="endDate" value="">
+                  <input type="date" id="endDate" name="endDate">
                 </div>
               </div>
 
               <div class="input-form my-2 mx-2">
-                <label for="color">予定色</label>
+                <label for="scheduleColor">予定色</label>
                 <input type="color" id="scheduleColor" name="scheduleColor"  list="defaultColor">
                 <datalist id="defaultColor">
                   <option value="#ff0000"></option>
