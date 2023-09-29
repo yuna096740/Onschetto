@@ -41,11 +41,13 @@ document.addEventListener('DOMContentLoaded', function() {
       dateClick: function (info) {
         // クリックされた日付を取得
         const createStartDate = formatDate(info.date);
-        const createEndDate = formatDate(info.date);
+
+        const createEndDate = new Date(info.date.getTime());
+        createEndDate.setDate(createEndDate.getDate() + 1); // 1日足して表示する
 
         // 初期値をセット(date)
         document.getElementById('startDate').value = createStartDate;
-        document.getElementById('endDate').value = createEndDate;
+        document.getElementById('endDate').value = formatDate(createEndDate);
         MicroModal.show('clickScheduleModal');
 
         const submitSchedule = document.getElementById('submitSchedule');
