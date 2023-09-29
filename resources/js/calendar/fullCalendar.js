@@ -53,6 +53,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         function buttonClick() {
           // Laravelの登録処理の呼び出し
+          console.log(info.start.valueOf());
           const data = {
             startDate: info.start.valueOf(),
             endDate: info.end.valueOf(),
@@ -73,14 +74,15 @@ document.addEventListener('DOMContentLoaded', function() {
               });
             })
             .catch(() => {
-                // バリデーションエラーetc
-                alert("登録に失敗しました");
+              // バリデーションエラーetc
+              alert("登録に失敗しました");
             });
           };
       },
 
       // Laravelのイベント取得処理の呼び出し
-      events: function (info, successCallback, failureCallback) {
+      events: function (info, successCallback) {
+        console.log("Date" , info.start);
         axios
           .post("/schedule-get", {
             eventId : info.id,
