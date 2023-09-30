@@ -11,7 +11,7 @@ class PostRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,11 @@ class PostRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'startDate'     => 'required|date',
+            'endDate'       => 'required|date',
+            'eventName'     => 'required|between:0,18',
+            'scheduleColor' => 'required|string',
+            'description'   => 'required|between:0,32',
         ];
     }
 }
