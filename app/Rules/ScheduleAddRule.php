@@ -14,6 +14,6 @@ class ScheduleAddRule implements ValidationRule
      */
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-        //
+        if(!$value <= 0 )
     }
 }
