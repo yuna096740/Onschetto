@@ -26,7 +26,7 @@ class PostController extends Controller
     /**
      * イベントを登録
      * 
-     * @param Request $request
+     * @param PostRequest $request
      */
     public function scheduleAdd(PostRequest $request)
     {
@@ -91,7 +91,7 @@ class PostController extends Controller
     /**
      * イベントを編集
      * 
-     * @param Request $request
+     * @param PostRequest $request
      */
     public function scheduleEdit(PostRequest $request) 
     {
@@ -121,7 +121,7 @@ class PostController extends Controller
      * 
      * @param Request $request
      */
-    public function scheduleDrop(PostRequest $request)
+    public function scheduleDrop(Request $request)
     {
         $post = Post::find($request->id);
         $post->startDate = $request->startDate;
@@ -134,7 +134,7 @@ class PostController extends Controller
      * 
      * @param Request $request
      */
-    public function scheduleResize(PostRequest $request)
+    public function scheduleResize(Request $request)
     {
         $post = Post::find($request->id);
         $post->startDate = $request->startDate;
